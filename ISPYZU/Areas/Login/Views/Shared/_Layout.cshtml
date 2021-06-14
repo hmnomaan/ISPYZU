@@ -17,24 +17,39 @@
                     <span class="icon-bar"></span>
                 </button>
 
-               
+              
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("ISPYZU", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                <ul class="nav navbar-nav">
+
+                    <li> @Html.ActionLink("Admin", "Index", "Admin", new { area = "Login" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("Teacher", "Index", "Admin", new { area = "Login" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("student", "Index", "Admin", new { area = "Login" }, new { @class = "navbar-brand" })</li>
+
                 </ul>
-                    <ul class="nav navbar-nav">
-                        
-                        <li> @Html.ActionLink("Admin", "Index", "Admin", new { area = "Login" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Teacher", "Index", "Admin", new { area = "Login" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("student", "Index", "Admin", new { area = "Login" }, new { @class = "navbar-brand" })</li>
-                    </ul>
+
+                <ul class="nav navbar-nav navbar-right" style="color:white">
+
+                    @if(Session["UserName"] != null)
+                    {
+                        <h4 style="color:white">Hello  @Session["UserName"]</h4>
+                        @Html.ActionLink("Logout", "Logout", "Admin")
+                    }
+                        else
+                        {
+                        <li>@Html.ActionLink("ISPYZU", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+
+                </ul>
+
+
             </div>
         </div>
     </div>
 
     <div class="container body-content">
         @RenderBody()
+        
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

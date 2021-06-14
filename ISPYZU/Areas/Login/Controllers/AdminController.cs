@@ -32,9 +32,14 @@ namespace ISPYZU.Areas.Login.Controllers
                         
                         Session["UserName"]= obj.UserName.ToString();
                         Session["Password"]= obj.Password.ToString();
-                    return RedirectToAction("UserDashBoard");
+
+                        return RedirectToAction("UserDashBoard");
                        
                         
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The username and password is incorrect");
                     }
 
                 }
@@ -54,8 +59,14 @@ namespace ISPYZU.Areas.Login.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Admin");
+        }
 
-      
+
+
 
     }
 }
